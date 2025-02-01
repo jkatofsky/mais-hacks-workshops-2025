@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>MAIS Hacks 2025!</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/dark.css">
+    </head>
+
+    <body>
+        <h1>MAIS Hacks 2025 Frontend Workshop</h1>
+        <h2>Text sentiment analyzer</h2>
+
+        <label>Enter your text:</label>
+        <input type="text" id="text">
+        <button id="analyze">Analyze sentiment</button>
+        <p>
+            <span><b>Sentiment description:</b></span>
+            <span id="sentiment-description"></span>
+        </p>
+		<p>
+            <span><b>Sentiment score:</b></span>
+            <span id="sentiment-score"></span>
+        </p>
+
+
+        <script>
+			const textInput = document.getElementById('text')
+            const analyzeButton = document.getElementById('analyze');
+            const sentimentDescriptionSpan = document.getElementById('sentiment-description');
+            const sentimentScoreSpan = document.getElementById('sentiment-score');
+
+            const getSentimentAnalysis = async (text) => {
+                const response = await fetch(
+                    `http://127.0.0.1:8000/sentiment`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            text
+                        })
+                    });
+                const responseJson = await response.json();
+                return responseJson;
+            }
+
+            analyzeButton.addEventListener('click', async () => {
+                const sentimentAnalysis = await getSentimentAnalysis(textInput.value);
+                sentimentDescriptionSpan.innerHTML = sentimentAnalysis.sentiment_description;
+				sentimentScoreSpan.innerHTML = sentimentAnalysis.sentiment_score;
+            })
+        </script>
+    </body>
+
+</html>

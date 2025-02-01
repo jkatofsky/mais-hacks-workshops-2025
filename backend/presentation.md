@@ -1,6 +1,6 @@
 # MAIS Hacks 2025 - Beginner backend workshop
 
-Hello! I'm Josh Katofsky, MAIS Alumni from 2021-2022 (fun fact: I made the hackathon website!), currently working as a Full Stack Developer at Coveo (fun fact: we're [hiring summer interns right now](https://www.coveo.com/en/company/careers/open-positions#t=career-search&numberOfResults=9&f:employmenttype=[Intern])).
+Hello! I'm Josh Katofsky, McGill grad in 2022, and MAIS Alumni from 2021-2022 (fun fact: I made the hackathon website!), currently working as a Full Stack Developer at Coveo (fun fact: we're [hiring summer interns right now](https://www.coveo.com/en/company/careers/open-positions#t=career-search&numberOfResults=9&f:employmenttype=[Intern])).
 
 This presentation will go over setting up a basic local web server that can be used to perform sentiment analysis on provided text.
 
