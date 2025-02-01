@@ -1,6 +1,6 @@
 # MAIS Hacks 2025 - Beginner backend workshop
 
-Hello! I'm Josh Katofsky, McGill grad in 2022, and MAIS Alumni from 2021-2022 (fun fact: I made the hackathon website!), currently working as a Full Stack Developer at Coveo (fun fact: we're [hiring summer interns right now](https://www.coveo.com/en/company/careers/open-positions#t=career-search&numberOfResults=9&f:employmenttype=[Intern])).
+Hello! I'm Josh Katofsky, 2022 McGill grad, and MAIS exec team alumni (fun fact: I made the hackathon website!). I'm currently working as a Full Stack Developer at Coveo (P.S. we're [hiring summer interns right now](https://www.coveo.com/en/company/careers/open-positions#t=career-search&numberOfResults=9&f:employmenttype=[Intern])).
 
 This presentation will go over setting up a basic local web server that can be used to perform sentiment analysis on provided text.
 
@@ -26,7 +26,7 @@ It is aimed at *beginners*. And feel free to ask questions at any time!
 
 #### Create a requirements.txt
   - `nltk`: a library containing lots of tools for working with natural language
-  - `fastapi`: an easy web server framework for Python
+  - `fastapi`: an easy web server framework for Python (similar to Flask, if you've heard of it)
 
 #### Install the packages
 ```bash
@@ -49,8 +49,11 @@ Tip: if you get a certificate error on Mac when trying to download the `nltk` le
 
 #### API Concepts
 
+- Route/Resource/Endpoint
+  - Some path that will be appended ot the URL of the server, corresponding to some functionality on the server
+
 - JSON: **J**ava**S**cript **O**bject **N**otation
-  - A data format; technically, the serialization of a JavsScript object, but also the standard format for sending data to/from APIs using any technologies
+  - A data format; technically, the serialization of a JavaScript object, has become the standard format for sending data to/from routes
 
 ```json
 {
@@ -63,27 +66,27 @@ Tip: if you get a certificate error on Mac when trying to download the `nltk` le
 ```
 
 - HTTP verbs (AKA "request methods")
-  - `GET` - retrieve a resource
-  - `DELETE` - delete a resource
-  - `PUT` - replace the resource
-  - `POST` - submit data to the server
+  - `GET` - retrieve a resource (e.g., `GET /resource`)
+  - `DELETE` - delete a resource (`DELETE /resource`)
+  - `PUT` - replace the resource (`PUT /resource`, with a request "body" specified in JSON)
+  - `POST` - submit data to the server (`POST /some/route`, with a request "body" specified in JSON)
   - ...
 
-*Which is the most suitable for getting the sentiment of text?*
+*Which is the most suitable for our use case?*
 
 #### Creating the API endpoint
 
 Now, with this knowledge, and our sentiment-analyzing function, we can create a `POST` endpoint that returns the sentiment data for submitted text in JSON.
 
-Once the code is ready, rather than running the file directly, we pass it to `fastapi`, where it recognizes the endpoint we defined, and serves it locally on the port `8000`.
+#### Testing
+
+Once the code is ready, rather than running the file directly, we pass it to `fastapi`, where it recognizes the endpoint we defined, and serves the API locally on the port `8000`.
 
 ```bash
 fastapi dev app.py
 ```
 
-#### Testing
-
-We can now send a web request to our server, and it will respond!
+We can now send a web request to our server, and it will respond! (MacOS only; for Windows alternatives there are some good ideas [here](https://superuser.com/questions/362152/native-alternative-to-wget-in-windows-powershell?_gl=1*1rlea1n*_ga*MTQ1NjY3ODc5Ni4xNzM4Mzg1NDg2*_ga_S812YQPLT2*MTczODM4NTQ4Ni4xLjAuMTczODM4NTQ4Ni4wLjAuMA..)).
 
 ```bash
 curl -H 'Content-Type: application/json' \
